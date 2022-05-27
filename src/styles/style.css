@@ -3,7 +3,9 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
 	font-family: 'Lexend Deca', sans-serif;
 	box-sizing: border-box;
 }
-
+html, body, .root{
+	height: 100%;
+}
 /* FORMULARIOS E BOTOES */
 .form-field{
 	font-weight: 400;
@@ -38,10 +40,12 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
 }
 .container{
 	width: 100%;
-	box-sizing: border-box;
-	padding-left: 25px;
-	padding-right: 25px;
-	padding-bottom: 170px;
+	height: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 70px;
+	padding-top: 90px;
+	background: #E5E5E5;
 }
 .pt-20{
 	padding-top: 20px;
