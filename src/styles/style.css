@@ -1,0 +1,59 @@
+/* GLOBAL */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
+	font-family: 'Lexend Deca', sans-serif;
+	box-sizing: border-box;
+}
+
+/* FORMULARIOS E BOTOES */
+.form-field{
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 26px;
+	border: 1px solid #D5D5D5;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 6px;
+}
+.form-field:focus{
+	border: 1px solid #52B6FF;
+	box-shadow: 0px 0px 5px 0px rgba(82,182,255,0.3);
+}
+.form-field::placeholder{
+	color: #DBDBDB;
+}
+.form-field:disabled{
+	background: #F2F2F2;
+	color: #F2F2F2;
+	border: 1px solid #D5D5D5;
+}
+.btn{
+	background: #52B6FF;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 26px;
+	padding: 10px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+.container{
+	width: 100%;
+	box-sizing: border-box;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 170px;
+}
+.pt-20{
+	padding-top: 20px;
+}
+.pb-20{
+	padding-bottom: 20px;
+}
+.ml-10{
+	margin-left: 10px;
+}
+.flex-center{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
