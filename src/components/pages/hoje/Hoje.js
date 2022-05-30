@@ -13,12 +13,14 @@ function HabitoCard({habito, id}){
 
     const {user} = useAuth();
 
-    function checkHabito(id){
+    function checkHabito(id, done){
         const config = {
             headers: { Authorization: `Bearer ${user.token}` }
         };
         
-        const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habito.id}/check`, {}, config);
+        const URL = done ? `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habito.id}/uncheck` : `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habito.id}/check`;
+       
+        const promise = axios.post(URL, {}, config);
 
         promise.then(response => {
             
@@ -33,7 +35,7 @@ function HabitoCard({habito, id}){
                 <p className="card-info"> Sequência atual: <span>{habito.currentSequence} </span></p>
                 <p className="card-info"> Seu Recorde: <span>{habito.highestSequence}</span></p>
             </div>
-            <div className="check-box" onClick={() => checkHabito(id)}>
+            <div className="check-box" onClick={() => checkHabito(id, habito.done)}>
                 <img src={CheckIcon}></img>
             </div>
         </Card>
