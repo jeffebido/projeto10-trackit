@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, setState} from 'react';
 import styled from 'styled-components';
 import Topo from '../../layout/topo/Topo';
 import Menu from '../../layout/menu/Menu';
@@ -14,6 +14,19 @@ export default function Habitos() {
     const {user} = useAuth();
 
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [diasHabitos, setDiasHabitos] = useState([]);
+
+    const [formNome, setFormNome] = useState("");
+
+
+    function handleCheckbox (val){
+        let newArray = [...diasHabitos, val];
+
+        if (diasHabitos.includes(val)) {
+          newArray = newArray.filter(day => day !== val);
+        }
+        setDiasHabitos(newArray);
+    };
 
     function enviaForm (event) {
 
@@ -25,21 +38,21 @@ export default function Habitos() {
         
         setBtnDisabled(true);
         
-
+        
 		axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
             
-            name: "Nome do hábito",
-            days: [1, 3, 5] // segunda, quarta e sexta
+            name: formNome,
+            days: diasHabitos 
             
 		}, config)
         .then( response => {
-            
+            //console.log(response);
             
         } )
         .catch((err) => {
 
-            console.error(err);
-            alert("Dados inválidos!");
+           // console.error(err);
+           // alert("Dados inválidos!");
             setBtnDisabled(false);
         });
 	}
@@ -56,33 +69,33 @@ export default function Habitos() {
 
                     <Card>
                         <form onSubmit={enviaForm}>
-                            <input type="text" placeholder="nome do hábito" className="form-field"></input>
+                            <input type="text" placeholder="nome do hábito" value={formNome} onChange={e => setFormNome(e.target.value)} className="form-field"></input>
 
-                            <input type="checkbox" id="check_1" name="check_1" value="1" />
+                            <input type="checkbox" id="check_1" name="check_1" value="1"  onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_1">D</label>
 
-                            <input type="checkbox" id="check_2" name="check_2" value="2" />
+                            <input type="checkbox" id="check_2" name="check_2" value="2" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_2">S</label>
 
-                            <input type="checkbox" id="check_3" name="check_3" value="3" />
+                            <input type="checkbox" id="check_3" name="check_3" value="3" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_3">T</label>
 
-                            <input type="checkbox" id="check_4" name="check_4" value="4" />
+                            <input type="checkbox" id="check_4" name="check_4" value="4" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_4">Q</label>
 
-                            <input type="checkbox" id="check_5" name="check_5" value="5" />
+                            <input type="checkbox" id="check_5" name="check_5" value="5" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_5">Q</label>
 
-                            <input type="checkbox" id="check_6" name="check_6" value="6" />
+                            <input type="checkbox" id="check_6" name="check_6" value="6" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_6">S</label>
 
-                            <input type="checkbox" id="check_7" name="check_7" value="7" />
+                            <input type="checkbox" id="check_7" name="check_7" value="7" onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_7">S</label>
 
 
                             <BotoesForm>
                                 <button className="btn btn-outline">Cancelar</button>
-                                <button className="btn" type="submit" >{btnDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Salvar"} </button>
+                                <button className="btn" type="submit">{btnDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Salvar"} </button>
                             </BotoesForm>
                         </form>
 
@@ -158,4 +171,7 @@ const BotoesForm = styled.div`
 	display: flex;
     align-items: center;
     justify-content: right;
+    .btn:disabled{
+        opacity: 0.6;
+    }
 `;
