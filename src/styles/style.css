@@ -6,6 +6,12 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
 html, body, .root{
 	height: 100%;
 }
+p{
+	font-size: 18px;
+	color: #666666;
+	line-height: 22px;
+	font-weight: 400;
+}
 /* FORMULARIOS E BOTOES */
 .form-field{
 	font-weight: 400;
@@ -15,6 +21,7 @@ html, body, .root{
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 6px;
+	width: 100%;
 }
 .form-field:focus{
 	border: 1px solid #52B6FF;
@@ -31,12 +38,27 @@ html, body, .root{
 .btn{
 	background: #52B6FF;
 	border-radius: 5px;
-	font-size: 20px;
-	line-height: 26px;
-	padding: 10px;
+	font-size: 16px;
 	color: #fff;
 	border: none;
 	cursor: pointer;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 17px;
+	padding-right: 17px;
+	font-weight: 400;
+}
+.btn.btn-new{
+	font-size: 27px;
+	line-height: 27px;
+	width: 45px;
+	height: 45px;
+}
+.btn.btn-outline{
+	color: #52B6FF;
+	background: #fff;
 }
 .container{
 	width: 100%;
@@ -50,14 +72,43 @@ html, body, .root{
 .pt-20{
 	padding-top: 20px;
 }
+.pt-30{
+	padding-top: 30px;
+}
 .pb-20{
 	padding-bottom: 20px;
 }
 .ml-10{
 	margin-left: 10px;
 }
+.mt-10{
+	margin-top: 10px;
+}
 .flex-center{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+.page-heading{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 20px;
+}
+.page-title{
+	font-size: 23px;
+	line-height: 29px;
+	color: #126BA5;
+	font-weight: 400;
+}
+.page-title span{
+	display: block;
+	color: #BABABA;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 22px;
+}
+.page-title span.green, .green{
+	color: #8FC549;
+}
+

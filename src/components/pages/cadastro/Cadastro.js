@@ -17,7 +17,7 @@ export default function Cadastro() {
                 <input type="text" placeholder="nome" className="form-field"></input>
                 <input type="text" placeholder="foto" className="form-field"></input>
 
-                <input type="submit" value="Cadastrar" className="btn"></input>
+                <Submit type="submit" value="Cadastrar" className="btn"></Submit>
             </form>
             <Footer className="flex-center">
                 <a>Já tem uma conta? Faça login!</a>
@@ -58,4 +58,14 @@ const Footer = styled.div`
         color: #52B6FF;
         cursor: pointer;
     }
+`;
+const Submit = styled.input`
+	background: #52B6FF;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 26px;
+	padding: 10px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
 `;

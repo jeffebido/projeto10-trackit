@@ -16,7 +16,7 @@ export default function Login() {
                     <input type="email" placeholder="email" className="form-field"></input>
                     <input type="password" placeholder="senha" className="form-field"></input>
                     
-                    <input type="submit" value="Entrar" className="btn"></input>
+                    <Submit type="submit" value="Entrar"></Submit>
                 </form>
                 <Footer className="flex-center">
                     <a>Não tem uma conta? Cadastre-se!</a>
@@ -60,4 +60,14 @@ const Footer = styled.div`
         color: #52B6FF;
         cursor: pointer;
     }
+`;
+const Submit = styled.input`
+	background: #52B6FF;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 26px;
+	padding: 10px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
 `;
