@@ -10,11 +10,29 @@ import {useAuth} from "../../../providers/Auth";
 import TrashIcon from '../../../img/trash.svg';
 
 function HabitoCard({nome, dias, id}){
+
+    const {user} = useAuth();
+    
+    function deleta(){
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+        
+       
+       
+        const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,  config);
+
+        promise.then(response => {
+            
+            window.location.reload(false);
+        });
+    }
+
     return (
         <Card className="mt-10" key={id}>
             <div className="card-title">
                 <h2> {nome} </h2>
-                <img src={TrashIcon}></img>
+                <img src={TrashIcon} onClick={() => deleta()} ></img>
             </div>
             <div className={ dias.find( el => el == 1 ) ? "box-day active" : "box-day"  } >D</div>
             <div className={ dias.find( el => el == 2 ) ? "box-day active" : "box-day"  }>S</div>
@@ -138,7 +156,7 @@ export default function Habitos() {
 
                     { listaHabitos === null ? (<p className="pt-30">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>): (
 
-                        listaHabitos.map( habito => <HabitoCard nome={habito.name} dias={habito.days}  key={habito.id}/> ) 
+                        listaHabitos.map( habito => <HabitoCard nome={habito.name} dias={habito.days}  id={habito.id} key={habito.id}/> ) 
 
                     )}
 
@@ -199,6 +217,7 @@ const Card = styled.div`
         img{
             height: 15px;
             width: auto;
+            cursor: pointer;
         }
     }
     
