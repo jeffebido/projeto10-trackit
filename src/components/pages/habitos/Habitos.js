@@ -9,14 +9,53 @@ import {useAuth} from "../../../providers/Auth";
 
 import TrashIcon from '../../../img/trash.svg';
 
+function HabitoCard({nome, dias, id}){
+    return (
+        <Card className="mt-10" key={id}>
+            <div className="card-title">
+                <h2> {nome} </h2>
+                <img src={TrashIcon}></img>
+            </div>
+            <div className={ dias.find( el => el == 1 ) ? "box-day active" : "box-day"  } >D</div>
+            <div className={ dias.find( el => el == 2 ) ? "box-day active" : "box-day"  }>S</div>
+            <div className={ dias.find( el => el == 3 ) ? "box-day active" : "box-day"  }>T</div>
+            <div className={ dias.find( el => el == 4 ) ? "box-day active" : "box-day"  }>Q</div>
+            <div className={ dias.find( el => el == 5 ) ? "box-day active" : "box-day"  }>Q</div>
+            <div className={ dias.find( el => el == 6 ) ? "box-day active" : "box-day"  }>S</div>
+            <div className={ dias.find( el => el == 7 ) ? "box-day active" : "box-day"  }>S</div>
+
+        </Card>
+    );
+}
+
 export default function Habitos() {
 
     const {user} = useAuth();
 
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [hiddenForm, setHiddenForm] = useState(true);
     const [diasHabitos, setDiasHabitos] = useState([]);
-
+    const [listaHabitos, setListaHabitos] = useState([]);
     const [formNome, setFormNome] = useState("");
+
+    useEffect(() => {
+
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+
+        promise.then(response => {
+
+
+            setListaHabitos(response.data);
+            console.log(response.data);
+            
+        });
+
+     
+    }, []);
 
 
     function handleCheckbox (val){
@@ -46,14 +85,10 @@ export default function Habitos() {
             
 		}, config)
         .then( response => {
-            //console.log(response);
-            
+            window.location.reload(false);
         } )
         .catch((err) => {
-
-           // console.error(err);
-           // alert("Dados inválidos!");
-            setBtnDisabled(false);
+            
         });
 	}
 
@@ -64,10 +99,10 @@ export default function Habitos() {
                 <div className="container">
                     <div className="page-heading">
                         <h1 className="page-title">Meus hábitos</h1>
-                        <button className="btn btn-new">+</button>
+                        <button className="btn btn-new" onClick={() => setHiddenForm(false)}>+</button>
                     </div>
 
-                    <Card>
+                    <Card className="card-novo-habito" hiddenForm={hiddenForm}>
                         <form onSubmit={enviaForm}>
                             <input type="text" placeholder="nome do hábito" value={formNome} onChange={e => setFormNome(e.target.value)} className="form-field"></input>
 
@@ -94,22 +129,20 @@ export default function Habitos() {
 
 
                             <BotoesForm>
-                                <button className="btn btn-outline">Cancelar</button>
+                                <button className="btn btn-outline" onClick={() => setHiddenForm(true)}>Cancelar</button>
                                 <button className="btn" type="submit">{btnDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Salvar"} </button>
                             </BotoesForm>
                         </form>
 
                     </Card>
-                    <Card className="mt-10">
-                        <div className="card-title">
-                            <h2> Ler 1 capítulo de livro </h2>
-                            <img src={TrashIcon}></img>
-                        </div>
-                        <div className="box-day">D</div>
-                        <div className="box-day">s</div>
-                        <div className="box-day">t</div>
-                    </Card>
-                    <p className="pt-30">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+
+                    { listaHabitos === null ? (<p className="pt-30">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>): (
+
+                        listaHabitos.map( habito => <HabitoCard nome={habito.name} dias={habito.days}  key={habito.id}/> ) 
+
+                    )}
+
+                    
                 </div>
 
             <Menu/>
@@ -123,7 +156,9 @@ const Card = styled.div`
 	width: 100%;
 	border-radius: 5px;
 	background: #fff;
-
+    display: ${
+      props => props.hiddenForm ? "none" :  "block"
+    };
     input[type="checkbox"]:not(:checked), 
     input[type="checkbox"]:checked {
 
@@ -166,6 +201,7 @@ const Card = styled.div`
             width: auto;
         }
     }
+    
 `;
 const BotoesForm = styled.div`
 	display: flex;

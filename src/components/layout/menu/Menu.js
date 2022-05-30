@@ -16,9 +16,11 @@ export default function Menu() {
                         Hábitos
                     </Btn>
                 </Link>
-                <Progressbar>
-                    <CircularProgressbar value={percentage}  text="Hoje"/>
-                </Progressbar>
+                <Link to={`/hoje`} >
+                    <Progressbar>
+                        <CircularProgressbar value={percentage}  text="Hoje"/>
+                    </Progressbar>
+                </Link>
                 <Link to={`/historico`} >
                     <Btn>
                         Histórico
