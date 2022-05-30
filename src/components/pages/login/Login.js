@@ -1,9 +1,46 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link, useNavigate } from "react-router-dom";
+import { ThreeDots } from  'react-loader-spinner'
+import axios from "axios";
+import {useAuth} from "../../../providers/Auth"; 
 
 import Logo from '../../../img/logo.png';
 
 export default function Login() {
+
+    const navigate = useNavigate();
+    const {setUser} = useAuth();
+
+    const [formEmail, setFormEmail] = useState("");
+    const [formSenha, setFormSenha] = useState("");
+
+    const [formDisabled, setFormDisabled] = useState(false);
+
+    function enviaForm (event) {
+
+        event.preventDefault();
+
+        setFormDisabled(true);
+
+        axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {
+            email: formEmail,
+            password: formSenha
+		})
+        .then( response => {
+            setUser(response.data);
+            localStorage.setItem("user", JSON.stringify(response.data));
+            console.log(response.data);
+            //alert("sds");
+            navigate("/habitos");
+        } )
+        .catch((err) => {
+
+            console.error(err);
+            alert("Usuário ou senha incorreta!");
+            setFormDisabled(false);
+        });
+    }
 
     return (
         
@@ -12,14 +49,16 @@ export default function Login() {
                 <Header className="flex-center">
                     <img src={Logo} />
                 </Header>
-                <form>
-                    <input type="email" placeholder="email" className="form-field"></input>
-                    <input type="password" placeholder="senha" className="form-field"></input>
+                <form onSubmit={enviaForm}>
+                    <input type="email" placeholder="email" value={formEmail} onChange={e => setFormEmail(e.target.value)} className="form-field" required disabled={formDisabled}></input>
+                    <input type="password" placeholder="senha" value={formSenha} onChange={e => setFormSenha(e.target.value)} className="form-field" required disabled={formDisabled}></input>
                     
-                    <Submit type="submit" value="Entrar"></Submit>
+                    <Submit type="submit">{formDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Entrar"}</Submit>
                 </form>
                 <Footer className="flex-center">
-                    <a>Não tem uma conta? Cadastre-se!</a>
+                    <Link to={`/cadastro`} >
+                        Não tem uma conta? Cadastre-se!
+                    </Link>
                 </Footer>
             </Container>
             
@@ -61,13 +100,18 @@ const Footer = styled.div`
         cursor: pointer;
     }
 `;
-const Submit = styled.input`
+const Submit = styled.button`
 	background: #52B6FF;
 	border-radius: 5px;
 	font-size: 20px;
 	line-height: 26px;
-	padding: 10px;
 	color: #fff;
 	border: none;
 	cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-height: 45px;
 `;

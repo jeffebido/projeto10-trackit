@@ -3,6 +3,9 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, strong, a, input, button{
 	font-family: 'Lexend Deca', sans-serif;
 	box-sizing: border-box;
 }
+a{
+	text-decoration: none;
+}
 html, body, .root{
 	height: 100%;
 }
@@ -32,7 +35,7 @@ p{
 }
 .form-field:disabled{
 	background: #F2F2F2;
-	color: #F2F2F2;
+	color: #DBDBDB;
 	border: 1px solid #D5D5D5;
 }
 .btn{

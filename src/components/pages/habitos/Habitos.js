@@ -1,12 +1,48 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import styled from 'styled-components';
-
 import Topo from '../../layout/topo/Topo';
 import Menu from '../../layout/menu/Menu';
+import axios from "axios";
+
+import { ThreeDots } from  'react-loader-spinner'
+import {useAuth} from "../../../providers/Auth"; 
 
 import TrashIcon from '../../../img/trash.svg';
 
 export default function Habitos() {
+
+    const {user} = useAuth();
+
+    const [btnDisabled, setBtnDisabled] = useState(false);
+
+    function enviaForm (event) {
+
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+
+		event.preventDefault();
+        
+        setBtnDisabled(true);
+        
+
+		axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
+            
+            name: "Nome do hábito",
+            days: [1, 3, 5] // segunda, quarta e sexta
+            
+		}, config)
+        .then( response => {
+            
+            
+        } )
+        .catch((err) => {
+
+            console.error(err);
+            alert("Dados inválidos!");
+            setBtnDisabled(false);
+        });
+	}
 
     return (
         
@@ -19,7 +55,7 @@ export default function Habitos() {
                     </div>
 
                     <Card>
-                        <form>
+                        <form onSubmit={enviaForm}>
                             <input type="text" placeholder="nome do hábito" className="form-field"></input>
 
                             <input type="checkbox" id="check_1" name="check_1" value="1" />
@@ -46,7 +82,7 @@ export default function Habitos() {
 
                             <BotoesForm>
                                 <button className="btn btn-outline">Cancelar</button>
-                                <button className="btn ">Salvar</button>
+                                <button className="btn" type="submit" >{btnDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Salvar"} </button>
                             </BotoesForm>
                         </form>
 

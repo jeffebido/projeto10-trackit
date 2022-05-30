@@ -1,8 +1,11 @@
 import styled from 'styled-components';
+import {useAuth} from "../../../providers/Auth"; 
 
 export default function Topo() {
+    const {user} = useAuth();
 
-    const usrImg= "http://ec2-54-207-222-235.sa-east-1.compute.amazonaws.com/full-stack-challenge/admin/assets/images/faces/2.jpg";
+
+    const usrImg= user.image;
 
 
     return (

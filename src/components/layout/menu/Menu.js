@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { Link, useNavigate } from "react-router-dom";
+
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function Menu() {
@@ -9,15 +11,19 @@ export default function Menu() {
     return (
         <>  
             <Footer>
-                <Btn>
-                    Hábitos
-                </Btn>
+                <Link to={`/habitos`} >
+                    <Btn>
+                        Hábitos
+                    </Btn>
+                </Link>
                 <Progressbar>
                     <CircularProgressbar value={percentage}  text="Hoje"/>
                 </Progressbar>
-                <Btn>
-                    Histórico
-                </Btn>
+                <Link to={`/historico`} >
+                    <Btn>
+                        Histórico
+                    </Btn>
+                </Link>
             </Footer>
         </>
         
@@ -44,6 +50,7 @@ const Btn = styled.div`
     font-size: 18px;
     line-height: 22px;
     text-align: center;
+    text-decoration: none;
 `;
 const Progressbar = styled.div`
     background: #52B6FF;
