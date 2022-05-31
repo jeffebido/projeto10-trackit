@@ -98,19 +98,21 @@ export default function Habitos() {
         
         setBtnDisabled(true);
         
-        
-		axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
+        if(diasHabitos.length > 0){
+            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
             
-            name: formNome,
-            days: diasHabitos 
-            
-		}, config)
-        .then( response => {
-            window.location.reload(false);
-        } )
-        .catch((err) => {
-            
-        });
+                name: formNome,
+                days: diasHabitos 
+                
+            }, config)
+            .then( response => {
+                window.location.reload(false);
+            } );
+        }else{
+            alert("Selecione ao menos um dia");
+            setBtnDisabled(false);
+        }
+
 	}
 
     return (
@@ -125,7 +127,7 @@ export default function Habitos() {
 
                     <Card className="card-novo-habito" hiddenForm={hiddenForm}>
                         <form onSubmit={enviaForm}>
-                            <input type="text" placeholder="nome do hábito" value={formNome} onChange={e => setFormNome(e.target.value)} className="form-field"></input>
+                            <input type="text" placeholder="nome do hábito" value={formNome} onChange={e => setFormNome(e.target.value)} className="form-field" required></input>
 
                             <input type="checkbox" id="check_1" name="check_1" value="1"  onChange={e => handleCheckbox(e.target.value)} />
                             <label htmlFor="check_1">D</label>
@@ -150,7 +152,7 @@ export default function Habitos() {
 
 
                             <BotoesForm>
-                                <button className="btn btn-outline" onClick={() => setHiddenForm(true)}>Cancelar</button>
+                                <a className="btn btn-outline" onClick={() => setHiddenForm(true)}>Cancelar</a>
                                 <button className="btn" type="submit">{btnDisabled ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Salvar"} </button>
                             </BotoesForm>
                         </form>

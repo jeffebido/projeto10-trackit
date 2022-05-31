@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Topo from '../../layout/topo/Topo';
 import Menu from '../../layout/menu/Menu';
 import axios from "axios";
+import dayjs from 'dayjs';
 
 import { ThreeDots } from  'react-loader-spinner'
 import {useAuth} from "../../../providers/Auth"; 
@@ -47,7 +48,8 @@ export default function Hoje() {
     const {user} = useAuth();
     
     const [listaHabitos, setListaHabitos] = useState([]);
-
+    const [habitosConcluidos, setHabitosConcluidos] = useState(0);
+    const diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domigo"];
 
     useEffect(() => {
 
@@ -61,6 +63,7 @@ export default function Hoje() {
 
 
             setListaHabitos(response.data);
+            setHabitosConcluidos( response.data.filter((el) => el.done).length );
         });
 
      
@@ -75,7 +78,18 @@ export default function Hoje() {
             <Topo/>
                 <div className="container">
                     <div className="page-heading">
-                        <h1 className="page-title">Meus hábitos <span className="">sdsd</span></h1>
+                        <h1 className="page-title">
+                            
+                            {diasSemana[dayjs().day() -1]}, {dayjs().format('DD/MM')}
+
+                            {
+                                habitosConcluidos == 0 ? 
+                                    <span>Nenhum hábito concluído ainda</span> :
+                                    <span className="green">{habitosConcluidos } dos hábitos concluídos</span>
+                            }
+                            
+
+                        </h1>
                         
                     </div>
 
