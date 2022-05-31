@@ -68,6 +68,9 @@ export default function Habitos() {
 
 
             setListaHabitos(response.data);
+            
+
+            
             console.log(response.data);
             
         });

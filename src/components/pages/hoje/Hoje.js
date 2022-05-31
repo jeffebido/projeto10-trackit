@@ -13,7 +13,7 @@ function HabitoCard({habito, id}){
 
     const {user} = useAuth();
 
-    function checkHabito(id, done){
+    function checkHabito(done){
         const config = {
             headers: { Authorization: `Bearer ${user.token}` }
         };
@@ -35,7 +35,7 @@ function HabitoCard({habito, id}){
                 <p className="card-info"> Sequência atual: <span>{habito.currentSequence} </span></p>
                 <p className="card-info"> Seu Recorde: <span>{habito.highestSequence}</span></p>
             </div>
-            <div className="check-box" onClick={() => checkHabito(id, habito.done)}>
+            <div className="check-box" onClick={() => checkHabito(habito.done)}>
                 <img src={CheckIcon}></img>
             </div>
         </Card>
@@ -45,7 +45,7 @@ function HabitoCard({habito, id}){
 export default function Hoje() {
 
     const {user} = useAuth();
-
+    
     const [listaHabitos, setListaHabitos] = useState([]);
 
 
@@ -61,8 +61,6 @@ export default function Hoje() {
 
 
             setListaHabitos(response.data);
-            console.log(response.data);
-            
         });
 
      

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {AuthProvider} from "../providers/Auth"; 
+import {ButtonProvider} from "../providers/Button"; 
 
 import Cadastro from "./pages/cadastro/Cadastro";
 import Habitos from "./pages/habitos/Habitos";
@@ -14,18 +15,24 @@ export default function App() {
     return (
 
         <>  
-            <AuthProvider>       
-                <BrowserRouter>
-                    <Routes>
+            <AuthProvider>
+                <ButtonProvider>   
+                    <BrowserRouter>
+                        <Routes>
 
-                        <Route path="/cadastro" element={<Cadastro />} />
-                        <Route path="/habitos" element={<Habitos />} />
-                        <Route path="/historico" element={<Historico />} />
-                        <Route path="/Hoje" element={<Hoje />} />
-                        <Route path="/" element={<Login />} />
+                            <Route path="/cadastro" element={<Cadastro />} />
 
-                    </Routes> 
-                </BrowserRouter>
+                            
+                                <Route path="/habitos" element={<Habitos />} />
+                                <Route path="/historico" element={<Historico />} />
+                                <Route path="/Hoje" element={<Hoje />} />
+                            
+
+                            <Route path="/" element={<Login />} />
+
+                        </Routes> 
+                    </BrowserRouter>
+                </ButtonProvider>
             </AuthProvider>
         </>
     );
