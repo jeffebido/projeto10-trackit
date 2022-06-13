@@ -1,6 +1,6 @@
 <div align="center"> 
   
-  <a href="" target="_blank">
+  <a href="https://trackit-black.vercel.app/" target="_blank">
     <img src="https://github.com/jeffebido/trackit/blob/main/src/img/logo.png" alt="Logo">
   </a>
   
@@ -21,7 +21,10 @@
   ---
   
  <h4 align="center">
-     Aplicativo mobile de rastreamento de hábitos, utilizando Context API, e bibliotecas como <a href="https://www.npmjs.com/package/react-loader-spinner" target="_blank">react-loader-spinner</a>, <a href="https://www.npmjs.com/package/react-circular-progressbar" target="_blank">react-circular-progressbar</a> e <a href="https://day.js.org/" target="_blank">dayjs</a>.
+     Aplicativo mobile de rastreamento de hábitos, utilizando Context API, e bibliotecas como <a href="https://www.npmjs.com/package/react-loader-spinner" target="_blank">react-loader-spinner</a>, <a href="https://www.npmjs.com/package/react-circular-progressbar" target="_blank">react-circular-progressbar</a> e <a href="https://day.js.org/" target="_blank">dayjs</a>. Faz consumo de API para cadastros e listagens.
+  <br/> <br/>
+     Deploy: <a href="https://trackit-black.vercel.app/" target="_blank">https://trackit-black.vercel.app//a>
+      <br/>
  </h4>
   
 <div align="center">
