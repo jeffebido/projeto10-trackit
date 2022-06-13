@@ -1,3 +1,37 @@
+<div align="center">
+  
+ 
+  
+  <a href="" target="_blank">
+    <img src="https://github.com/jeffebido/trackit/blob/main/src/img/logo.png" alt="Logo">
+  </a>
+  
+[![wakatime](https://wakatime.com/badge/user/578c8c26-46da-4b46-a315-3eb46eecfb5a/project/a1e9140f-ed5b-4df5-96d3-d2b56f859789.svg)](https://wakatime.com/badge/user/578c8c26-46da-4b46-a315-3eb46eecfb5a/project/a1e9140f-ed5b-4df5-96d3-d2b56f859789)
+  
+
+</div>
+
+
+<div align="center">
+  
+
+![uses-react](https://img.shields.io/badge/REACT-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![uses-html5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![uses-css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![uses-javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+  
+ </div>
+ 
+  ---
+  
+  <h4 align="center">
+     Aplicativo mobile de rastreamento de hábitos, utilizando Context API, e bibliotecas como <a href="https://www.npmjs.com/package/react-loader-spinner" target="_blank">react-loader-spinner</a>, <a href="https://www.npmjs.com/package/react-circular-progressbar" target="_blank">react-circular-progressbar</a> e <a href="https://day.js.org/" target="_blank">dayjs</a>.
+  </h4>
+<div align="center">
+    <img src="https://github.com/jeffebido/trackit/blob/main/src/img/trackit.gif" alt="Logo">
+</div>
+ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
