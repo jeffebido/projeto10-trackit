@@ -12,16 +12,19 @@ export const ButtonProvider = (props) => {
 
     useEffect(() => {
 
-        const config = {
-            headers: { Authorization: `Bearer ${user.token}` }
-        };
+        if(user.token){
+            const config = {
+                headers: { Authorization: `Bearer ${user.token}` }
+            };
+    
+            const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+    
+            promise.then(response => {
+    
+                setPercent( (response.data.filter((el) => el.done).length / response.data.length) * 100  );
+            });
+        }
 
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
-
-        promise.then(response => {
-
-            setPercent( (response.data.filter((el) => el.done).length / response.data.length) * 100  );
-        });
 
      
     }, []);
