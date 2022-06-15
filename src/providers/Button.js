@@ -12,7 +12,7 @@ export const ButtonProvider = (props) => {
 
     useEffect(() => {
 
-        if(user.token){
+        if(user){
             const config = {
                 headers: { Authorization: `Bearer ${user.token}` }
             };
